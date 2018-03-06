@@ -91,3 +91,13 @@ script:
 
 after_success:
     - if [[ $MAIN_CMD == 'coverage' ]]; then coveralls; fi
+
+deploy:
+    - provider: pypi
+      distributions: sdist
+      user: "rainwoodman"
+      password:
+        secure: "RapjlEZY3fPrj19zwBbmqvTd5hS4Alip/HcfBmt3uGotjDGAeJYW7UWX8ZzaI+coj41BinfDn3kO5F8dCYRsaim5x441gb5T03o7dKxXN9M+VG8dSsP0qRiGwer5EHOywzZ7z5XDCVIVPh1VvnKBIycYSZfJ5Z2WUXAv1+qFuct1nM+DJNEtnsMum39mhrWm0z9JxIxAKnu7PF3aGJ6i/lJCABMEcWBoXOMTLRO/nPgfCXhMIS6n2IGKTO/rk0rbzlobAQv2S6VqFZS7Jpijr7k6xX0116EEtmv0ONCfSSZYf+P0IeveJ5pHnwPSayfZXVmkHtjd8FCQ/YOUsqc6jmbHtlnSRi3xl6z4xTWIN5nYtn350YvF5W5YWMra8gvoE/dC4N9Kj5bhEZMfrpAt6D89yakVfr8nB2JuBSNIXg8YgJSVlZr8a3SAcRpdO13eKj8ktl0jEbgr1ZwTyXhY/Z65N6pXRrptuZnoeCXROJkVlHjxql94X6SJxrv7WAzblJc+B8rdog10A9cOiOu5aj6xeJ52Z7uaOaHqah94nWvjdL/IbRr9dixzftkP9YcaP+UzlIBlhWQYEAPzLP00lZ+hZPGg5O8Vw0t+dCHL7xRdTlMLFg0vokzD/pT6Cudk85lnIzUqS4pqifNT9SWoWLwBjbd7hFzt7f8T8XBiAT4="
+      on:
+        tags   : true
+        condition : ${TRAVIS_JOB_NUMBER##*.} == 1
